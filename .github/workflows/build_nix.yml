@@ -20,7 +20,9 @@ jobs:
         workflow: build_nix.yml
         repo: mkn/maiken
 
-    - name: "Build/Test" # contains slash so use quotes otherwise UB
+    - name: "Build/Test"
       run: |
         chmod +x mkn
+        ldd mkn
+        ls -l /usr/local/lib64
         KLOG=3 ./mkn clean build run -dtOp test -a "-std=c++17 -fPIC"
