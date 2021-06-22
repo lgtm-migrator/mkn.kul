@@ -12,7 +12,26 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Get mkn
+    - name: dbg
+      run: |
+        set -x
+        ld -v
+        ldd --version
+        g++ -v
+
+    - name: upgrade
+      run: |
+        sudo apt-get update
+        sudo apt-get dist-upgrade -y
+
+    - name: dbg
+      run: |
+        set -x
+        ld -v
+        ldd --version
+        g++ -v
+
+    - name: get
       uses: dawidd6/action-download-artifact@v2
       with:
         name: mkn
@@ -20,9 +39,7 @@ jobs:
         workflow: build_nix.yml
         repo: mkn/maiken
 
-    - name: "Build/Test"
+    - name: "mkn"
       run: |
         chmod +x mkn
-        ldd mkn
-        ls -l /usr/local/lib64
         KLOG=3 ./mkn clean build run -dtOp test -a "-std=c++17 -fPIC"
