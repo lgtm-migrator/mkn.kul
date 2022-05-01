@@ -41,6 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "mkn/kul/proc.hpp"
 #include "mkn/kul/threads.hpp"
 #include "mkn/kul/span.hpp"
+#include "mkn/kul/sort.hpp"
 #include "mkn/kul/tuple.hpp"
 
 #ifdef _WIN32
@@ -65,6 +66,7 @@ auto tryCatch = [](std::vector<std::function<void()>> funcs, bool katch) {
 #include "test/proc.ipp"
 #include "test/string.ipp"
 #include "test/span.ipp"
+#include "test/sort.ipp"
 
 int main(int argc, char *argv[]) {
   KOUT(NON) << __FILE__;
